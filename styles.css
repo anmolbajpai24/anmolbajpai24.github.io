@@ -1,0 +1,71 @@
+body{
+    background-color: #393E46;
+    color: #fff;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif;
+}
+
+.nav-link{
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+.container-basic{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.name{
+    font-size: 5rem;
+    font-weight: 900;
+    color: #AAD8D3;
+    text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.title{
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.description{
+    font-size: 1.5rem;
+    color: white;
+}
+
+.btn{
+    background-color: #00ADB5;
+    color: whitesmoke;
+    font-weight: 900;
+    border-radius: 15;
+    border: none;
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.header-container{
+    height: max-content;
+}
+
+.about-text{
+    font-size: 1.5rem;
+    text-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.exp-card{
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 15px;
+    box-shadow: 0px 10px 4px rgba(0, 0, 0, 0.25);
+    border: 3px solid #00ADB5;
+}
+
+.exp-card:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.project-card{
+    background-color: #00ADB5;
+}
+
+.project-card >.card-body > .card-title{
+    text-shadow: 0px 5px 2px rgba(0, 0, 0, 0.25);
+}
