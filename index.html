@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anmol Bajpai — software engineer</title>
+    <meta
+      name="description"
+      content="Software engineer at Petals Studio building live game systems, currently going deep on robot learning — a 22-day public challenge, documented day by day."
+    />
+    <meta property="og:title" content="Anmol Bajpai — software engineer" />
+    <meta
+      property="og:description"
+      content="Game systems by day, robot policies by night. Shipped work, a live robot-learning log, numbers and failures included."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anmolbajpai24.github.io/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // Set theme before first paint to avoid a flash of the wrong scheme.
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored === "light" || stored === "dark"
+            ? stored
+            : window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
