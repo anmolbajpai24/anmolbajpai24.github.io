@@ -21,7 +21,7 @@ npm run dev
    slug: day-5
    title: Whatever actually happened
    date: 2026-07-XX
-   summary: One honest sentence for the index page.
+   summary: One sentence for the index page.
    ---
    ```
 

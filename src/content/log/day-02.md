@@ -18,16 +18,16 @@ frame.
   anything, and in two days I get to find out how true that is.
 - Images are stored as **(96, 96, 3) uint8** frames in AV1-encoded video, but
   the dataset delivers them to the model as **(3, 96, 96) float32** tensors
-  scaled to [0, 1]. Same pixels, two very different shapes — knowing which
+  scaled to [0, 1]. Same pixels, two very different shapes. Knowing which
   layer of the stack you're looking at saves real debugging time.
-- Actions are **raw canvas coordinates in a 0–512 space** — target positions
+- Actions are **raw canvas coordinates in a 0–512 space**: target positions
   for the pusher, not joint angles, not deltas. Episode 0's actions span
   x ∈ [93, 375], y ∈ [71, 449].
 
 ## Episode zero, up close
 
 Episode 0 occupies rows 0–160 of the dataset: 161 frames, 16.1 seconds. It is
-an *imperfect* demonstration — the human overshoots, corrects, and still
+an *imperfect* demonstration: the human overshoots, corrects, and still
 lands the block. That imperfection is a feature: the dataset teaches recovery
 behavior, not just the ideal path. I rendered it to a GIF, plotted the
 trajectory, and stared at it for longer than I'd like to admit.
@@ -46,5 +46,5 @@ following along:
 
 **Worth remembering:** look at your training data at the level of individual
 frames and actions before you spend GPU-hours on it. Everything I found today
-— the coordinate action space, the imperfect demos, the tensor format split —
-changed how I'll read the training curves tomorrow.
+(the coordinate action space, the imperfect demos, the format split) changes
+how I'll read the training curves tomorrow.

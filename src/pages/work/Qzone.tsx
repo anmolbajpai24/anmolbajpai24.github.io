@@ -5,7 +5,7 @@ export default function Qzone() {
     <ProjectLayout
       kicker="Petals Studio"
       title="Qzone"
-      dek="The React frontend for a live quiz product — I built the interface layer that turns a question feed from an API into a playable quiz."
+      dek="The React frontend for a live quiz product. I built the interface layer between the quiz API and the player."
       facts={[
         { label: "Role", value: "Frontend engineering" },
         { label: "Stack", value: "React, REST APIs" },
@@ -16,10 +16,7 @@ export default function Qzone() {
       ]}
     >
       <h2>What I built</h2>
-      <p>
-        Qzone is a quiz product; my part was the React frontend. Concretely
-        that meant three things:
-      </p>
+      <p>Qzone is a quiz product; my part was the React frontend:</p>
       <ul>
         <li>
           <strong>State management</strong> for quiz flow — question
@@ -28,7 +25,7 @@ export default function Qzone() {
         </li>
         <li>
           <strong>REST API integration</strong> against the quiz backend, with
-          the loading and error states a live product actually needs.
+          the loading and error states a live product needs.
         </li>
         <li>
           <strong>Dynamic question rendering</strong> — the UI renders
@@ -37,11 +34,8 @@ export default function Qzone() {
         </li>
       </ul>
       <p>
-        It&rsquo;s a smaller entry than the others on this site, and
-        that&rsquo;s deliberate — I&rsquo;d rather describe it at its real
-        size than inflate it. The pattern it shares with my other work:
-        interfaces driven by data, so content changes don&rsquo;t become code
-        changes.
+        The pattern it shares with my other work: interfaces driven by data,
+        so content changes don&rsquo;t become code changes.
       </p>
     </ProjectLayout>
   );

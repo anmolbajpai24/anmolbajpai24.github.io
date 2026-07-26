@@ -17,7 +17,9 @@ export default function LogEntry() {
   const entry = slug ? entryBySlug(slug) : undefined;
 
   usePageMeta(
-    entry ? `Day ${entry.day}: ${entry.title} — Anmol Bajpai` : "Not found",
+    entry
+      ? `Day ${entry.day}: ${entry.title} — Anmol Bajpai`
+      : "Not found — Anmol Bajpai",
     entry?.summary,
   );
 

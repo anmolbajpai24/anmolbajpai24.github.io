@@ -3,15 +3,15 @@ day: 4
 slug: day-4
 title: 39.8%, and a plateau the loss curve hid
 date: 2026-07-19
-summary: My own policy scored 39.8% under the frozen protocol. The interesting part — skill stopped improving at 50k steps while the loss kept falling all night.
+summary: My own policy scored 39.8% under the frozen protocol. The interesting part — skill stopped improving at 50k steps while the loss kept falling for the rest of the run.
 ---
 
 Eval day. My from-scratch policy, measured by the same frozen protocol as the
 pretrained reference: **39.8%** (199/500). The reference scores 61.0%.
 
-So 45% of the reference training bought about 65% of the reference skill. I'll
-take it — but the headline number turned out to be the least interesting thing
-I learned today.
+So 45% of the reference training bought about 65% of the reference skill.
+I'll take it. But the headline number turned out to be the least interesting
+thing I learned today.
 
 ## The plateau
 
@@ -26,15 +26,15 @@ consistent):
 | 70k steps | 43.3% |
 | 90k (final, frozen protocol) | 39.8% |
 
-Skill plateaued by 50,000 steps. Meanwhile the loss kept falling for the
-entire back half of the night — 0.005 down to 0.002 — looking for all the
-world like the model was still improving.
+Skill plateaued by 50,000 steps. Meanwhile the loss kept falling through the
+entire back half of the run, 0.005 down to 0.002, looking for all the world
+like the model was still improving.
 
 It wasn't lying, exactly. Loss and success rate grade different exams. Loss
 measures per-frame imitation on states a *human* visited; success rate
 measures 300-step rollouts through states the *policy itself* reaches,
-compounding error included. The second half of my GPU-night polished an answer
-to the wrong question.
+compounding error included. The back half of those ten GPU-hours polished an
+answer to the wrong question.
 
 (To be precise: it's a plateau, not a decline. The 43.3% → 39.8% drop is
 within sampling error at these episode counts — I'm not going to claim a
@@ -59,6 +59,6 @@ yet understand. I'm writing that down instead of hand-waving an explanation;
 it goes on the list for a later day.
 
 **Worth remembering:** the metric you optimize is a proxy, and it will
-happily keep improving after the thing you actually care about has stopped.
-The only way I caught this was having a frozen, comparable eval — the ruler
-from day 1 doing exactly the job it was frozen for.
+happily keep improving after the thing you care about has stopped. The only
+way I caught this was having a frozen, comparable eval: the ruler from day 1
+doing the job it was frozen for.

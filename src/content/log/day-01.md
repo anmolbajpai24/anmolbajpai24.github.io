@@ -53,4 +53,4 @@ frozen even where it's imperfect.
 **Worth remembering:** a failed episode can have a *higher* summed reward than
 a successful one, because successes terminate early and stop accumulating
 reward. Sum-of-reward is a trap on this benchmark; success rate and
-max-reward-per-episode are the honest metrics.
+max-reward-per-episode are the ones to trust.

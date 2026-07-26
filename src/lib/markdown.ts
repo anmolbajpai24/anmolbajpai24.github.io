@@ -36,7 +36,9 @@ const files = import.meta.glob("../content/log/*.md", {
 }) as Record<string, string>;
 
 function toEntry(raw: string): LogEntryData {
-  const { meta, body } = parseFrontmatter(raw);
+  // Some Windows editors save a UTF-8 BOM, which would silently break the
+  // anchored frontmatter match.
+  const { meta, body } = parseFrontmatter(raw.replace(/^﻿/, ""));
   const day = Number(meta.day ?? 0);
   return {
     slug: meta.slug ?? `day-${day}`,
@@ -51,6 +53,24 @@ function toEntry(raw: string): LogEntryData {
 export const logEntries: LogEntryData[] = Object.values(files)
   .map(toEntry)
   .sort((a, b) => b.day - a.day); // newest first
+
+// Authoring mistakes in a new entry should fail loudly in dev, not ship as
+// a silent "day 0" or an unreachable duplicate slug.
+if (import.meta.env.DEV) {
+  const seen = new Set<string>();
+  for (const e of logEntries) {
+    if (!Number.isInteger(e.day) || e.day <= 0) {
+      throw new Error(`Log entry "${e.title}": missing or invalid "day".`);
+    }
+    if (seen.has(e.slug)) {
+      throw new Error(`Duplicate log slug "${e.slug}".`);
+    }
+    seen.add(e.slug);
+    if (Number.isNaN(new Date(`${e.date}T00:00:00`).getTime())) {
+      throw new Error(`Log entry "${e.title}": invalid date "${e.date}".`);
+    }
+  }
+}
 
 export function entryBySlug(slug: string): LogEntryData | undefined {
   return logEntries.find((e) => e.slug === slug);

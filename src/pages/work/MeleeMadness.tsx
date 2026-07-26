@@ -107,13 +107,12 @@ export default function MeleeMadness() {
         In a live multiplayer game, the &ldquo;meta-game&rdquo; is everything
         outside the match itself: what you unlock, what you buy, how you
         progress. It&rsquo;s where a game earns its living, and it changes
-        weekly — which means the systems behind it have to survive constant
-        content churn without an engineer hand-wiring every update.
+        constantly. The systems behind it have to survive that content churn
+        without an engineer hand-wiring every update.
       </p>
       <p>
         This is shipped work on my employer&rsquo;s product, so I&rsquo;m
-        describing the systems rather than showing internal material —
-        what&rsquo;s here is limited to the shape of the engineering.
+        describing the systems rather than showing internal material.
       </p>
 
       <h2>What I built</h2>
@@ -134,14 +133,13 @@ export default function MeleeMadness() {
         </li>
         <li>
           <strong>Bulk catalog-import tooling</strong> that publishes items
-          programmatically — turning catalog updates from a click-through
-          chore in a dashboard into a reviewed, repeatable operation.
+          programmatically, turning catalog updates from a click-through chore
+          in a dashboard into a reviewed, repeatable operation.
         </li>
         <li>
           <strong>Dynamic shop and combo screens</strong> that render locked
           vs. unlocked content from live catalog and inventory state, so the
-          UI can&rsquo;t drift out of sync with what the backend economy
-          actually says.
+          UI can&rsquo;t drift out of sync with what the backend economy says.
         </li>
       </ul>
 
@@ -149,13 +147,10 @@ export default function MeleeMadness() {
 
       <h2>What made it interesting</h2>
       <p>
-        The core discipline is that the client renders <em>state</em>, not
-        assumptions. Every locked padlock and every price tag on screen traces
-        back to the live catalog and the player&rsquo;s inventory. That single
-        rule is what lets designers reshape the economy without anyone
-        touching UI code — and it&rsquo;s the same instinct I&rsquo;d later
-        apply to keeping a frozen eval protocol in my robot-learning work:
-        systems stay trustworthy when one source of truth is allowed to win.
+        The client renders <em>state</em>, not assumptions. Every locked
+        padlock and every price tag on screen traces back to the live catalog
+        and the player&rsquo;s inventory. That single rule is what lets
+        designers reshape the economy without anyone touching UI code.
       </p>
     </ProjectLayout>
   );

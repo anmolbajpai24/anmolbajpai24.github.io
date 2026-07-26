@@ -15,42 +15,48 @@ export default function Home() {
           Game systems by day. <em>Robot policies</em> by night.
         </h1>
         <p className="hero-intro">
-          I&rsquo;m Anmol — a software engineer at Petals Studio, where I build
+          I&rsquo;m Anmol, a software engineer at Petals Studio, where I build
           the meta-game and economy systems behind a live multiplayer mobile
-          game. Outside work I ship web products people actually use, and right
-          now I&rsquo;m teaching myself robot learning in public: a 22-day
+          game. Outside work I ship web products people use. Right now
+          I&rsquo;m teaching myself robot learning in public: a 22-day
           challenge, documented day by day, numbers and failures included.
         </p>
       </section>
 
-      <section className="now-strip">
-        <div className="section-label">
-          <span className="pulse" aria-hidden="true" />
-          Now · day {latest?.day ?? 4} of {TOTAL_DAYS}
-        </div>
-        <div>
-          <p className="measure" style={{ marginBottom: "0.75rem" }}>
-            Halfway in. So far: two policy architectures trained from scratch
-            and scored against a frozen 500-episode eval (my diffusion policy
-            39.8%, the pretrained reference 61.0%), an eval API that serves
-            every run live from its result files, and a running argument with
-            my own numbers — including one published score I had to correct.
-          </p>
-          <Link to="/log">Read the log &rarr;</Link>
-        </div>
-      </section>
+      {latest && (
+        <section className="now-strip">
+          <h2 className="section-label">
+            <span className="pulse" aria-hidden="true" />
+            Now · day {latest.day} of {TOTAL_DAYS}
+          </h2>
+          <div>
+            <p className="measure" style={{ marginBottom: "0.75rem" }}>
+              So far: two policy architectures trained from scratch and scored
+              against a frozen 500-episode eval (my diffusion policy 39.8%,
+              the pretrained reference 61.0%), an eval API that serves every
+              run live from its result files, and one published score I
+              corrected in public.
+            </p>
+            <p style={{ marginBottom: 0 }}>
+              <Link to={`/log/${latest.slug}`}>
+                Latest: day {latest.day}, &ldquo;{latest.title}&rdquo; &rarr;
+              </Link>{" "}
+              · <Link to="/log">All entries &rarr;</Link>
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="section">
-        <div className="section-label">Selected work</div>
+        <h2 className="section-label">Selected work</h2>
         <ul className="work-list">
           <li>
             <Link className="work-link" to="/work/roundtrip">
               <span className="work-title">Roundtrip</span>
               <span className="work-year">2026 · Personal</span>
               <p className="work-blurb">
-                A group-trip planning PWA — shared itinerary, live sync,
-                offline support. Built for one specific 24-day trip, then used
-                on it every day.
+                A group-trip planning PWA with live sync and offline support.
+                Built for one specific 24-day trip, then used on it every day.
               </p>
             </Link>
           </li>
@@ -69,15 +75,15 @@ export default function Home() {
               <span className="work-title">Qzone</span>
               <span className="work-year">Petals Studio</span>
               <p className="work-blurb">
-                The React frontend for a live quiz product — state management,
-                REST integration, dynamic question rendering.
+                The React frontend for a live quiz product. New question
+                content ships without a frontend release.
               </p>
             </Link>
           </li>
           <li>
             <Link className="work-link" to="/work/level-pipeline">
               <span className="work-title">Level-config pipeline</span>
-              <span className="work-year">2023 · Petals Studio</span>
+              <span className="work-year">2023 · Internal tooling</span>
               <p className="work-blurb">
                 A spreadsheet-to-API pipeline that lets non-engineers create
                 and publish game levels safely.
@@ -88,7 +94,7 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="section-label">Experience</div>
+        <h2 className="section-label">Experience</h2>
         <div>
           <div className="xp-item">
             <span className="xp-role">
@@ -124,13 +130,12 @@ export default function Home() {
       </section>
 
       <section className="section">
-        <div className="section-label">Contact</div>
+        <h2 className="section-label">Contact</h2>
         <div className="measure">
           <p>
-            If you&rsquo;re building in AI or robotics and need an engineer who
-            ships — or you just want to talk about diffusion policies, game
-            economies, or group-trip logistics — email is the fastest way to
-            reach me.
+            If you&rsquo;re building in AI or robotics and need an engineer
+            who ships, email is the fastest way to reach me. Also happy to
+            just talk diffusion policies or game economies.
           </p>
           <p style={{ marginBottom: 0 }}>
             <a href="mailto:anmolbajpai24@gmail.com">

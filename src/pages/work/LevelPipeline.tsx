@@ -7,7 +7,7 @@ function PipelineDiagram() {
         className="diagram"
         viewBox="0 0 760 140"
         role="img"
-        aria-label="Diagram: spreadsheet input flows through validation and environment detection into versioned JSON, then publishes over a REST API to the live game"
+        aria-label="Diagram: spreadsheet input flows through validation and environment detection into validated JSON, then publishes over a REST API to the live game"
       >
         <defs>
           <marker
@@ -74,9 +74,9 @@ function PipelineDiagram() {
 export default function LevelPipeline() {
   return (
     <ProjectLayout
-      kicker="Petals Studio · 2023"
+      kicker="Internal tooling · 2023"
       title="Level-config pipeline"
-      dek="A Google Apps Script pipeline that turns spreadsheet rows into validated JSON level configs and publishes them over a REST API — so creating game levels stopped requiring an engineer."
+      dek="Spreadsheet rows in, validated level configs out. A Google Apps Script pipeline that lets non-engineers create and publish game levels safely."
       facts={[
         { label: "Role", value: "Design & build, solo" },
         { label: "Stack", value: "Google Apps Script, REST APIs, JSON" },
@@ -106,10 +106,9 @@ export default function LevelPipeline() {
 
       <h2>Why it mattered</h2>
       <p>
-        The measure of internal tooling is who stops being a bottleneck.
-        After this shipped, non-technical admins created and updated levels
-        end to end without engineering help — and the validation layer meant
-        the API only ever saw configs that were structurally sound. Less
+        With the pipeline in place, non-technical admins can create and
+        update levels end to end without engineering help, and the validation
+        layer means the API receives only structurally sound configs. Less
         glamorous than a shop screen, and probably higher leverage.
       </p>
     </ProjectLayout>

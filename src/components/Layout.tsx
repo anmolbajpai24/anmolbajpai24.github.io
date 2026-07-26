@@ -1,13 +1,32 @@
-import { useEffect } from "react";
-import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import {
+  NavLink,
+  Link,
+  Outlet,
+  useLocation,
+  useNavigationType,
+} from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Layout() {
   const { pathname } = useLocation();
+  const navigationType = useNavigationType();
+  const mainRef = useRef<HTMLElement>(null);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    // Skip on initial load: keep natural document focus and let the browser
+    // handle scroll. On back/forward (POP), let the browser restore scroll
+    // position but still move focus so the page change is announced.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (navigationType !== "POP") {
+      window.scrollTo(0, 0);
+    }
+    mainRef.current?.focus({ preventScroll: true });
+  }, [pathname, navigationType]);
 
   return (
     <div className="container">
@@ -25,7 +44,7 @@ export default function Layout() {
         </nav>
       </header>
 
-      <main>
+      <main id="main" ref={mainRef} tabIndex={-1}>
         <Outlet />
       </main>
 

@@ -16,10 +16,25 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://anmolbajpai24.github.io/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f7f4ee"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#191613"
+    />
     <script>
       // Set theme before first paint to avoid a flash of the wrong scheme.
+      // localStorage can throw (blocked storage, sandboxed frames) — the
+      // system-preference fallback must still run.
       (function () {
-        var stored = localStorage.getItem("theme");
+        var stored = null;
+        try {
+          stored = localStorage.getItem("theme");
+        } catch (e) {}
         var theme =
           stored === "light" || stored === "dark"
             ? stored
