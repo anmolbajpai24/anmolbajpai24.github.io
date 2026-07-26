@@ -30,11 +30,11 @@ export default function Home() {
         </div>
         <div>
           <p className="measure" style={{ marginBottom: "0.75rem" }}>
-            Trained a 262-million-parameter diffusion policy from scratch on my
-            laptop overnight. It scores 39.8% on PushT under a frozen
-            500-episode eval — the pretrained reference gets 61.0%. Best
-            finding so far: the skill plateaued halfway through the night while
-            the loss curve kept promising progress.
+            Halfway in. So far: two policy architectures trained from scratch
+            and scored against a frozen 500-episode eval (my diffusion policy
+            39.8%, the pretrained reference 61.0%), an eval API that serves
+            every run live from its result files, and a running argument with
+            my own numbers — including one published score I had to correct.
           </p>
           <Link to="/log">Read the log &rarr;</Link>
         </div>
@@ -137,6 +137,7 @@ export default function Home() {
               anmolbajpai24@gmail.com
             </a>{" "}
             · <a href="https://github.com/anmolbajpai24">GitHub</a> ·{" "}
+            <a href="https://x.com/anmol_bajpai24">X</a> ·{" "}
             <a href="https://linkedin.com/in/anmolbajpai">LinkedIn</a> ·{" "}
             <a href="/Anmol_Bajpai_Resume.pdf">Resume (PDF)</a>
           </p>

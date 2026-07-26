@@ -23,12 +23,13 @@ export default function LogIndex() {
         <div className="kicker">The log</div>
         <h1 className="page-title">22 days of robot learning</h1>
         <p className="page-intro">
-          I&rsquo;m teaching myself robot learning in 22 working days, in
-          public. The rules: every claim gets a number, every model is measured
-          by the same frozen evaluation protocol set on day 1 (500 episodes,
-          seed 1000 — the pretrained reference scores 61.0%), and failures get
-          written up with the same care as wins. Hardware is a laptop RTX 4060,
-          which keeps me honest about compute.
+          I&rsquo;m teaching myself robot learning in 22 days, in public. The
+          rules: every claim gets a number, every model is measured by the
+          same frozen evaluation protocol set on day 1 (500 episodes, seed
+          1000 — the pretrained reference scores 61.0%), and failures get
+          written up with the same care as wins. Hardware is a laptop RTX
+          4060, which keeps me honest about compute. I also post each day on{" "}
+          <a href="https://x.com/anmol_bajpai24">X</a> as I go.
         </p>
       </header>
 

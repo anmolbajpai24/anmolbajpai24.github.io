@@ -630,6 +630,37 @@ code {
   padding: clamp(0.5rem, 2vw, 1.5rem);
 }
 
+/* SVG presentation attributes can't resolve var(), so diagram styling
+   lives here. Default box/text is muted; .dt is a box title; .box-accent
+   highlights the destination system. */
+.diagram rect {
+  fill: var(--bg);
+  stroke: var(--rule-strong);
+}
+
+.diagram rect.box-accent {
+  stroke: var(--accent);
+}
+
+.diagram text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--ink-2);
+}
+
+.diagram text.dt {
+  font-size: 13px;
+  fill: var(--ink);
+}
+
+.diagram line {
+  stroke: var(--ink-2);
+}
+
+.diagram marker path {
+  fill: var(--ink-2);
+}
+
 /* Stat row used on project pages and log entries */
 .stat-row {
   display: flex;

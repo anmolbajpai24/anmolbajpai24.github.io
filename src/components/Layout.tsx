@@ -34,6 +34,7 @@ export default function Layout() {
         <div className="footer-links">
           <a href="mailto:anmolbajpai24@gmail.com">Email</a>
           <a href="https://github.com/anmolbajpai24">GitHub</a>
+          <a href="https://x.com/anmol_bajpai24">X</a>
           <a href="https://linkedin.com/in/anmolbajpai">LinkedIn</a>
         </div>
         <span>Set in Fraunces &amp; IBM Plex. Built by hand.</span>

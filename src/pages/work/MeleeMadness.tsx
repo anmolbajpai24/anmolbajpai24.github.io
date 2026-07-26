@@ -19,61 +19,61 @@ function EconomyDiagram() {
             markerHeight="7"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-2)" />
+            <path d="M 0 0 L 10 5 L 0 10 z" />
           </marker>
         </defs>
 
         {/* Bulk import tooling */}
-        <rect x="20" y="20" width="200" height="60" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="120" y="45" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="20" y="20" width="200" height="60" rx="3" />
+        <text className="dt" x="120" y="45" textAnchor="middle">
           Bulk catalog import
         </text>
-        <text x="120" y="63" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="120" y="63" textAnchor="middle">
           publish items programmatically
         </text>
 
         {/* Catalog */}
-        <rect x="20" y="150" width="200" height="76" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="120" y="178" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="20" y="150" width="200" height="76" rx="3" />
+        <text className="dt" x="120" y="178" textAnchor="middle">
           PlayFab Economy V2
         </text>
-        <text x="120" y="196" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="120" y="196" textAnchor="middle">
           combo ⇄ weapon catalog,
         </text>
-        <text x="120" y="212" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="120" y="212" textAnchor="middle">
           bidirectionally linked
         </text>
 
         {/* Inventory */}
-        <rect x="290" y="150" width="190" height="76" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="385" y="182" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="290" y="150" width="190" height="76" rx="3" />
+        <text className="dt" x="385" y="182" textAnchor="middle">
           Player inventory
         </text>
-        <text x="385" y="200" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="385" y="200" textAnchor="middle">
           owned vs locked state
         </text>
 
         {/* UI */}
-        <rect x="550" y="110" width="190" height="116" rx="3" fill="var(--bg)" stroke="var(--accent)" />
-        <text x="645" y="145" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect className="box-accent" x="550" y="110" width="190" height="116" rx="3" />
+        <text className="dt" x="645" y="145" textAnchor="middle">
           Unity UI Toolkit
         </text>
-        <text x="645" y="163" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="645" y="163" textAnchor="middle">
           shop &amp; combo screens
         </text>
-        <text x="645" y="181" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="645" y="181" textAnchor="middle">
           render live catalog +
         </text>
-        <text x="645" y="197" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="645" y="197" textAnchor="middle">
           inventory state
         </text>
 
         {/* Arrows */}
-        <line x1="120" y1="80" x2="120" y2="144" stroke="var(--ink-2)" markerEnd="url(#arrow)" />
-        <line x1="220" y1="188" x2="284" y2="188" stroke="var(--ink-2)" markerEnd="url(#arrow)" />
-        <line x1="480" y1="188" x2="544" y2="188" stroke="var(--ink-2)" markerEnd="url(#arrow)" />
-        <line x1="220" y1="160" x2="544" y2="128" stroke="var(--ink-2)" markerEnd="url(#arrow)" />
-        <text x="380" y="132" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <line x1="120" y1="80" x2="120" y2="144" markerEnd="url(#arrow)" />
+        <line x1="220" y1="188" x2="284" y2="188" markerEnd="url(#arrow)" />
+        <line x1="480" y1="188" x2="544" y2="188" markerEnd="url(#arrow)" />
+        <line x1="220" y1="160" x2="544" y2="128" markerEnd="url(#arrow)" />
+        <text x="380" y="132" textAnchor="middle">
           item definitions
         </text>
       </svg>

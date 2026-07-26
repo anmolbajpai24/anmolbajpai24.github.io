@@ -19,48 +19,48 @@ function PipelineDiagram() {
             markerHeight="7"
             orient="auto-start-reverse"
           >
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--ink-2)" />
+            <path d="M 0 0 L 10 5 L 0 10 z" />
           </marker>
         </defs>
 
-        <rect x="10" y="35" width="160" height="70" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="90" y="65" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="10" y="35" width="160" height="70" rx="3" />
+        <text className="dt" x="90" y="65" textAnchor="middle">
           Google Sheet
         </text>
-        <text x="90" y="83" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="90" y="83" textAnchor="middle">
           designers edit levels
         </text>
 
-        <rect x="210" y="35" width="160" height="70" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="290" y="60" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="210" y="35" width="160" height="70" rx="3" />
+        <text className="dt" x="290" y="60" textAnchor="middle">
           Apps Script
         </text>
-        <text x="290" y="78" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="290" y="78" textAnchor="middle">
           validation + env
         </text>
-        <text x="290" y="94" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="290" y="94" textAnchor="middle">
           detection
         </text>
 
-        <rect x="410" y="35" width="160" height="70" rx="3" fill="var(--bg)" stroke="var(--rule-strong)" />
-        <text x="490" y="65" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect x="410" y="35" width="160" height="70" rx="3" />
+        <text className="dt" x="490" y="65" textAnchor="middle">
           Validated JSON
         </text>
-        <text x="490" y="83" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="490" y="83" textAnchor="middle">
           level configs
         </text>
 
-        <rect x="610" y="35" width="140" height="70" rx="3" fill="var(--bg)" stroke="var(--accent)" />
-        <text x="680" y="65" textAnchor="middle" fill="var(--ink)" fontFamily="var(--font-mono)" fontSize="13">
+        <rect className="box-accent" x="610" y="35" width="140" height="70" rx="3" />
+        <text className="dt" x="680" y="65" textAnchor="middle">
           REST publish
         </text>
-        <text x="680" y="83" textAnchor="middle" fill="var(--ink-2)" fontFamily="var(--font-mono)" fontSize="11">
+        <text x="680" y="83" textAnchor="middle">
           to the right env
         </text>
 
-        <line x1="170" y1="70" x2="204" y2="70" stroke="var(--ink-2)" markerEnd="url(#arrow2)" />
-        <line x1="370" y1="70" x2="404" y2="70" stroke="var(--ink-2)" markerEnd="url(#arrow2)" />
-        <line x1="570" y1="70" x2="604" y2="70" stroke="var(--ink-2)" markerEnd="url(#arrow2)" />
+        <line x1="170" y1="70" x2="204" y2="70" markerEnd="url(#arrow2)" />
+        <line x1="370" y1="70" x2="404" y2="70" markerEnd="url(#arrow2)" />
+        <line x1="570" y1="70" x2="604" y2="70" markerEnd="url(#arrow2)" />
       </svg>
       <figcaption>
         Spreadsheet in, validated level config out — with environment
