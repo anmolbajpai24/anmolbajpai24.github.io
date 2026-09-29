@@ -1,18 +1,34 @@
 import { useEffect, useRef } from "react";
 import {
-  NavLink,
   Link,
   Outlet,
   useLocation,
   useNavigationType,
 } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import SocialLinks from "./SocialLinks";
+
+const sections = [
+  { id: "work", label: "Work" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
 export default function Layout() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+
+  // The route effect below ignores a link to the URL we're already on, so
+  // clicking "Skills" twice (after scrolling away) would do nothing.
+  function scrollIfHere(id: string) {
+    if (pathname === "/" && hash === `#${id}`) {
+      document.getElementById(id)?.scrollIntoView();
+    }
+  }
   const navigationType = useNavigationType();
   const mainRef = useRef<HTMLElement>(null);
   const isFirstRender = useRef(true);
+  const lastLocation = useRef(`${pathname}${hash}`);
 
   useEffect(() => {
     // Skip on initial load: keep natural document focus and let the browser
@@ -22,11 +38,18 @@ export default function Layout() {
       isFirstRender.current = false;
       return;
     }
+    // Query-string changes (like the work filter tabs) aren't page changes:
+    // leave scroll and focus where the user put them.
+    const key = `${pathname}${hash}`;
+    if (key === lastLocation.current) return;
+    lastLocation.current = key;
     if (navigationType !== "POP") {
-      window.scrollTo(0, 0);
+      const target = hash ? document.getElementById(hash.slice(1)) : null;
+      if (target) target.scrollIntoView();
+      else window.scrollTo(0, 0);
     }
     mainRef.current?.focus({ preventScroll: true });
-  }, [pathname, navigationType]);
+  }, [pathname, hash, navigationType]);
 
   return (
     <div className="container">
@@ -35,13 +58,14 @@ export default function Layout() {
           Anmol Bajpai
         </Link>
         <nav className="site-nav" aria-label="Site">
-          <NavLink to="/" end>
-            Home
-          </NavLink>
-          <NavLink to="/log">Log</NavLink>
+          {sections.map((s) => (
+            <Link key={s.id} to={`/#${s.id}`} onClick={() => scrollIfHere(s.id)}>
+              {s.label}
+            </Link>
+          ))}
           <a href="/Anmol_Bajpai_Resume.pdf">Resume</a>
-          <ThemeToggle />
         </nav>
+        <ThemeToggle />
       </header>
 
       <main id="main" ref={mainRef} tabIndex={-1}>
@@ -50,14 +74,7 @@ export default function Layout() {
 
       <footer className="site-footer">
         <span>Anmol Bajpai · Delhi NCR, India</span>
-        <div className="footer-links">
-          <a href="mailto:anmolbajpai24@gmail.com">Email</a>
-          <a href="https://github.com/anmolbajpai24">GitHub</a>
-          <a href="https://x.com/anmol_bajpai24">X</a>
-          <a href="https://linkedin.com/in/anmolbajpai">LinkedIn</a>
-        </div>
-        <span>Set in Fraunces &amp; IBM Plex. Built by hand.</span>
-      </footer>
+        <SocialLinks className="footer-links" />      </footer>
     </div>
   );
 }

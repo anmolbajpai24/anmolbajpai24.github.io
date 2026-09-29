@@ -152,20 +152,17 @@ main:focus {
   padding: 0 clamp(1.25rem, 4vw, 2.5rem);
 }
 
-/* Editorial section: mono label in the left column, content on the right.
-   Collapses to stacked on narrow screens. */
+/* Editorial section: mono label above the content. Every home block (hero,
+   work, sections) starts on the container's left edge at every width, so
+   there is no separate label column to line up against. */
 .section {
-  display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: var(--space-3);
   padding: var(--space-4) 0;
   border-top: 1px solid var(--rule);
+  scroll-margin-top: 1rem;
 }
 
 @media (max-width: 720px) {
   .section {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
     padding: var(--space-3) 0;
   }
 }
@@ -177,8 +174,7 @@ main:focus {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-2);
-  padding-top: 0.45rem;
-  margin: 0;
+  margin: 0 0 var(--space-2);
 }
 
 .kicker {
@@ -206,15 +202,32 @@ main:focus {
    Header / footer
 --------------------------------------------------------------------------- */
 
+/* Wordmark | section links | theme toggle. On phones the links drop to a
+   second row and the toggle stays top-right, beside the wordmark. */
 .site-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: "brand nav toggle";
+  align-items: center;
+  column-gap: clamp(1rem, 2.5vw, 1.75rem);
   padding: var(--space-3) 0;
 }
 
+.site-header .wordmark {
+  grid-area: brand;
+}
+
+.site-header .site-nav {
+  grid-area: nav;
+  justify-self: end;
+}
+
+.site-header .theme-toggle {
+  grid-area: toggle;
+}
+
 .wordmark {
+  white-space: nowrap;
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
@@ -226,6 +239,10 @@ main:focus {
   display: flex;
   align-items: baseline;
   gap: clamp(0.9rem, 2.5vw, 1.6rem);
+}
+
+.site-nav a {
+  white-space: nowrap;
 }
 
 .site-nav a {
@@ -250,19 +267,27 @@ main:focus {
 }
 
 .theme-toggle {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: none;
-  border: none;
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
   padding: 0;
-  cursor: pointer;
+  border: 1px solid var(--rule-strong);
+  border-radius: 50%;
+  background: transparent;
   color: var(--ink-2);
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.theme-toggle svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .theme-toggle:hover {
   color: var(--accent);
+  border-color: var(--accent);
 }
 
 .site-footer {
@@ -277,13 +302,48 @@ main:focus {
   color: var(--ink-2);
 }
 
-.footer-links {
+/* Social links (footer + contact): brand icon beside each label. */
+.social-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  white-space: nowrap;
+}
+
+.social-icon {
+  flex: none;
+  width: 1em;
+  height: 1em;
 }
 
 .footer-links a {
   color: var(--ink-2);
+}
+
+.contact-links {
+  gap: 0 1.5rem;
+}
+
+.contact-links li:first-child {
+  flex-basis: 100%;
+}
+
+.contact-links a {
+  min-height: 2.75rem;
+}
+
+.contact-links .social-icon {
+  width: 1.1em;
+  height: 1.1em;
 }
 
 /* ---------------------------------------------------------------------------
@@ -317,16 +377,6 @@ main:focus {
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   padding: var(--space-3) 0;
-  display: grid;
-  grid-template-columns: 11rem 1fr;
-  gap: var(--space-3);
-}
-
-@media (max-width: 720px) {
-  .now-strip {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
-  }
 }
 
 .now-strip .pulse {
@@ -406,10 +456,12 @@ main:focus {
   margin: 0;
 }
 
-/* Experience */
+/* Experience: title and dates share a baseline, dates right-aligned.
+   Stacks (dates under the title) on phones — see the 720px query below. */
 .xp-item {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
   gap: 0.15rem 1.5rem;
   padding: 0 0 var(--space-3);
 }
@@ -427,6 +479,7 @@ main:focus {
   font-size: 0.8rem;
   color: var(--ink-2);
   white-space: nowrap;
+  text-align: right;
 }
 
 .xp-item p {
@@ -617,7 +670,39 @@ main:focus {
 
 /* ---------------------------------------------------------------------------
    Project pages
+   One centred text column at the reading measure holds the header, facts and
+   body. Media (.breakout) spans the full container width, centred on the same
+   axis, so both sets of edges are symmetric. 100cqi is <main>'s width (see
+   main { container-type } below); without cqi support breakouts simply stay
+   in the text column.
 --------------------------------------------------------------------------- */
+
+main {
+  container-type: inline-size;
+}
+
+/* 41.5rem ≈ 65ch of body text. A rem (not ch) width so a breakout's caption,
+   set in a smaller mono face, can compute the same column edges. */
+.project-page {
+  --text-col: 41.5rem;
+  max-width: var(--text-col);
+  margin-inline: auto;
+}
+
+.project-page .prose {
+  max-width: none;
+}
+
+.project-page .breakout {
+  margin-left: calc((100% - 100cqi) / 2);
+  margin-right: calc((100% - 100cqi) / 2);
+}
+
+/* The media goes full width; its caption comes back to the text column. */
+.project-page .breakout > figcaption {
+  max-width: none;
+  padding-inline: max(0px, (100% - var(--text-col)) / 2);
+}
 
 .project-header {
   padding: var(--space-4) 0 var(--space-3);
@@ -636,8 +721,8 @@ main:focus {
 
 .project-facts {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: var(--space-2) var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
+  gap: var(--space-2) 1.5rem;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
   padding: var(--space-2) 0;
@@ -739,4 +824,546 @@ h1.page-title {
   color: var(--ink-2);
   max-width: 58ch;
   font-size: 1.05rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Home v2: hero actions, track tabs, project cards, media
+--------------------------------------------------------------------------- */
+
+:root {
+  --radius: 10px;
+  --shadow: 0 1px 2px rgb(33 29 25 / 0.06), 0 8px 24px -12px rgb(33 29 25 / 0.18);
+  --shadow-hover: 0 2px 4px rgb(33 29 25 / 0.08), 0 18px 40px -16px rgb(33 29 25 / 0.28);
+}
+
+:root[data-theme="dark"] {
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.6);
+  --shadow-hover: 0 2px 4px rgb(0 0 0 / 0.35), 0 18px 40px -16px rgb(0 0 0 / 0.75);
+}
+
+.hero .kicker {
+  margin-bottom: var(--space-2);
+}
+
+/* Home hero with portrait: copy on the left edge, photo on the right,
+   centred against the copy. On phones the photo becomes a small avatar
+   above the kicker, on the same left edge. */
+.hero--portrait {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "copy portrait";
+  align-items: center;
+  column-gap: clamp(2rem, 5vw, 4.5rem);
+}
+
+.hero-copy {
+  grid-area: copy;
+  min-width: 0;
+}
+
+.hero-portrait {
+  grid-area: portrait;
+  display: block;
+  width: clamp(11rem, 22vw, 17rem);
+  height: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-raised);
+  box-shadow: 0 0 0 1px var(--rule), var(--shadow);
+}
+
+@media (max-width: 720px) {
+  .hero--portrait {
+    padding-top: var(--space-3);
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "portrait"
+      "copy";
+    row-gap: var(--space-3);
+    justify-items: start;
+  }
+  .hero-portrait {
+    width: 5.5rem;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: var(--space-3);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 1.15rem;
+  border: 1px solid var(--rule-strong);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--ink);
+  background: transparent;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.button--primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+.button--primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+/* Work section */
+.work-section {
+  border-top: 1px solid var(--rule);
+  padding: var(--space-4) 0;
+  scroll-margin-top: 1rem;
+}
+
+/* Label above tabs, both on the content's left edge. The grid track is
+   minmax(0, 1fr) so the tab strip can never widen the page; it scrolls. */
+.work-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  margin-bottom: var(--space-3);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.3rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bg-raised);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.4rem;
+  padding: 0 0.95rem;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.tab:hover {
+  color: var(--ink);
+}
+
+.tab[aria-selected="true"] {
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.tab-count {
+  font-size: 0.7rem;
+  min-width: 1.4rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  background: var(--rule);
+  color: var(--ink-2);
+  text-align: center;
+}
+
+.tab[aria-selected="true"] .tab-count {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+#work-panel:focus-visible {
+  outline-offset: 8px;
+}
+
+.track-intro {
+  color: var(--ink-2);
+  max-width: 60ch;
+  margin: 0 0 var(--space-3);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(17.5rem, 100%), 1fr));
+  gap: var(--space-3) 1.5rem;
+}
+
+/* Cards stretch to the row height; the body grows so each card's tag row
+   (margin-top: auto) sits on the same line across the row. */
+.card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow-wrap: break-word;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--bg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  animation: card-in 320ms ease both;
+}
+
+.card-grid .card:nth-child(2) { animation-delay: 40ms; }
+.card-grid .card:nth-child(3) { animation-delay: 80ms; }
+.card-grid .card:nth-child(4) { animation-delay: 120ms; }
+.card-grid .card:nth-child(n + 5) { animation-delay: 160ms; }
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.card--link:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--rule-strong);
+}
+
+.card-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link:hover {
+  color: inherit;
+}
+
+.card-link:focus-visible {
+  outline-offset: -3px;
+}
+
+.card .media {
+  margin: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.card .media-frame {
+  border-radius: 0;
+  border: none;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.1rem 1.2rem 1.25rem;
+  flex: 1;
+}
+
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+}
+
+.card-title {
+  font-size: 1.35rem;
+  transition: color 150ms ease;
+}
+
+.card--link:hover .card-title {
+  color: var(--accent);
+}
+
+.card-blurb {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.tag-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: auto 0 0;
+  padding: 0.6rem 0 0;
+}
+
+.tag-list li {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+}
+
+/* Media: images, videos, and labelled placeholders */
+.media {
+  margin: 0;
+}
+
+.media-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--rule);
+  background: var(--bg-raised);
+}
+
+.media-frame img,
+.media-frame video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.media-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 0.72rem;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent 0 12px,
+    color-mix(in srgb, var(--rule) 55%, transparent) 12px 13px
+  );
+}
+
+.media figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-2);
+  margin-top: 0.6rem;
+}
+
+/* Project page gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(11rem, 100%), 1fr));
+  gap: 1.25rem;
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.gallery--wide {
+  grid-template-columns: 1fr;
+}
+
+.project-hero-media {
+  margin: 0 0 var(--space-4);
+}
+
+/* Experience timeline and skills */
+/* The rail is a 1px border; each dot is centred on it horizontally
+   (left = -(padding + border/2 + dot/2)) and on the first line box of the
+   role title vertically (half a line-height minus half the dot). */
+.timeline {
+  --tl-pad: 1.25rem;
+  --tl-dot: 9px;
+  list-style: none;
+  max-width: var(--measure);
+  margin: 0;
+  padding: 0 0 0 var(--tl-pad);
+  border-left: 1px solid var(--rule-strong);
+}
+
+.timeline .xp-item {
+  position: relative;
+}
+
+.timeline .xp-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--tl-pad) - 0.5px - var(--tl-dot) / 2);
+  top: calc(1.65em / 2 - var(--tl-dot) / 2);
+  top: calc(0.5lh - var(--tl-dot) / 2);
+  width: var(--tl-dot);
+  height: var(--tl-dot);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--accent);
+}
+
+.timeline .xp-item:first-child::before {
+  background: var(--accent);
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-2) var(--space-3);
+  margin: 0;
+}
+
+.skills dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.3rem;
+}
+
+.skills dd {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 720px) {
+  .xp-item {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.1rem;
+  }
+  .xp-dates {
+    text-align: left;
+  }
+  .xp-item p {
+    margin-top: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card--link:hover,
+  .button:active {
+    animation: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Narrow screens: wordmark on its own line, nav below it. */
+@media (max-width: 720px) {
+  .site-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand toggle"
+      "nav nav";
+    row-gap: 0.75rem;
+  }
+  .site-header .site-nav {
+    justify-self: start;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    min-width: 0;
+  }
+  /* Hint that the filter row scrolls sideways. */
+  .tabs {
+    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+}
+
+/* Phone-screen captures: four across (even rows of four), two on phones. */
+.gallery--phones {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 560px) {
+  .gallery--phones {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Wide landscape game screenshots: two per row, one on phones. */
+.gallery--landscape {
+  grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
+}
+
+.media-frame video {
+  background: #000;
+}
+
+/* Portrait media beside text (phone gameplay captures). */
+.prose .split {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.prose .split h2:first-child {
+  margin-top: 0;
+}
+
+@media (max-width: 720px) {
+  .prose .split {
+    grid-template-columns: 1fr;
+  }
+  .prose .split .split-media {
+    max-width: 18rem;
+  }
+}
+
+/* Definition list of controls on project pages */
+.prose .control-list {
+  margin: var(--space-2) 0 var(--space-3);
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.prose .control-list > div {
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.prose .control-list dt {
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.prose .control-list dd {
+  margin: 0;
+  color: var(--ink-2);
 }

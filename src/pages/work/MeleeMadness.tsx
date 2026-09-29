@@ -1,8 +1,9 @@
 import ProjectLayout from "../../components/ProjectLayout";
+import MediaSlot from "../../components/MediaSlot";
 
 function EconomyDiagram() {
   return (
-    <figure className="figure">
+    <figure className="figure breakout">
       <svg
         className="diagram"
         viewBox="0 0 760 250"
@@ -80,77 +81,170 @@ function EconomyDiagram() {
       <figcaption>
         The shape of the system: catalog changes publish through tooling, and
         the UI renders whatever the live catalog and the player&rsquo;s
-        inventory say — no hand-synced content.
+        inventory say, with no hand-synced content.
       </figcaption>
     </figure>
   );
 }
 
+const screens = [
+  { name: "melee-madness/shop.webp", alt: "Melee Madness shop with category tabs, item grid and unlock button", caption: "Shop" },
+  { name: "melee-madness/daily-mission.webp", alt: "Daily mission leaderboard with ranked players and a share card", caption: "Daily mission leaderboard" },
+  { name: "melee-madness/match-results.webp", alt: "End-of-match results screen showing the score and each player's kills", caption: "Match results" },
+  { name: "melee-madness/profile.webp", alt: "Player profile with match stats and empty showcase slots", caption: "Profile" },
+  { name: "melee-madness/profile-showcase-slots.webp", alt: "Player profile with showcase cards placed in its slots", caption: "Profile with showcase cards" },
+  { name: "melee-madness/showcase.webp", alt: "Showcase screen with a grid of mission cards", caption: "Showcase" },
+];
+
 export default function MeleeMadness() {
   return (
     <ProjectLayout
-      kicker="Petals Studio · 2023 – present"
-      title="Melee Madness meta-game"
-      dek="Everything players touch between matches of a live multiplayer mobile brawler — the shop, progression, rewards, combo unlocks, and the economy that feeds them."
+      kicker="Petals Studio · May 2023 to Jul 2026"
+      title="Melee Madness"
+      dek="Every screen players touch in a live multiplayer mobile brawler, built in Unity UI Toolkit on a library of reusable controls, and wired to a live PlayFab economy."
       facts={[
-        { label: "Role", value: "Meta-game & economy systems" },
+        { label: "Role", value: "UI implementation, meta-game systems" },
         {
           label: "Stack",
           value: "Unity UI Toolkit (UXML/USS), C#, PlayFab Economy V2",
         },
-        { label: "Type", value: "Live multiplayer mobile game" },
-        { label: "Since", value: "May 2023" },
+        { label: "Platform", value: "Live multiplayer mobile game" },
+        {
+          label: "Play it",
+          value: (
+            <a href="https://play.google.com/store/apps/details?id=studio.petals.game.cc">
+              Google Play
+            </a>
+          ),
+        },
       ]}
     >
-      <h2>Context</h2>
-      <p>
-        In a live multiplayer game, the &ldquo;meta-game&rdquo; is everything
-        outside the match itself: what you unlock, what you buy, how you
-        progress. It&rsquo;s where a game earns its living, and it changes
-        constantly. The systems behind it have to survive that content churn
-        without an engineer hand-wiring every update.
-      </p>
-      <p>
-        This is shipped work on my employer&rsquo;s product, so I&rsquo;m
-        describing the systems rather than showing internal material.
-      </p>
+      <MediaSlot
+        className="project-hero-media breakout"
+        name="melee-madness/ui-walkthrough.mp4"
+        poster="melee-madness/ui-walkthrough-poster.webp"
+        controls
+        alt="Screen recording moving through the Melee Madness UI"
+        ratio="20 / 9"
+        caption="A walk through the shipped UI, recorded from the public Play Store build."
+      />
 
       <h2>What I built</h2>
+      <p>
+        I built all of the game&rsquo;s UI screens in Unity UI Toolkit, using
+        UXML for structure and USS for styling. That covers the shop, the
+        player profile and showcase, match results, daily missions and their
+        leaderboard, plus everything around them.
+      </p>
+
+      <div className="gallery gallery--landscape breakout">
+        {screens.map((s) => (
+          <MediaSlot key={s.name} name={s.name} alt={s.alt} caption={s.caption} ratio="20 / 9" />
+        ))}
+      </div>
+
+      <h2>A control library instead of one-off screens</h2>
+      <p>
+        I built a library of reusable custom UI Toolkit controls, so a new
+        screen was mostly a matter of putting tested parts together rather
+        than starting from zero. Most of them are configured from UXML
+        attributes, so a screen could use one without anyone writing code.
+        A fix or style change to a shared control showed up on every screen
+        that used it.
+      </p>
+
+      <h3 id="controls">Controls I built</h3>
+      <dl className="control-list">
+        <div>
+          <dt>Glare button</dt>
+          <dd>
+            The game&rsquo;s main call-to-action button. Glare effect,
+            animation type and speed, loop timing, size, text size and click
+            sound are all set as UXML attributes. The animation runs on an
+            interval rather than transition events, so it keeps playing when
+            a hidden button is shown again.
+          </dd>
+        </div>
+        <div>
+          <dt>Linear gradient and box shadow</dt>
+          <dd>
+            UI Toolkit had no built-in gradients or drop shadows, so I drew
+            them myself. The gradient generates its own mesh with a
+            configurable direction, colours and opacity, and the shadow takes
+            radius, scale, offset and colour from UXML.
+          </dd>
+        </div>
+        <div>
+          <dt>Orientation section and aspect-ratio element</dt>
+          <dd>
+            Layout helpers for a game that runs on many phone shapes. The
+            orientation section swaps a screen between portrait and
+            landscape layouts, and the aspect-ratio element keeps cards and
+            previews at a fixed shape whatever the screen size.
+          </dd>
+        </div>
+        <div>
+          <dt>Carousel and tabbed menu</dt>
+          <dd>
+            A carousel with configurable direction, transition speed and
+            autoplay that pauses while the player is interacting with it, and
+            a reusable tab control used across menus.
+          </dd>
+        </div>
+        <div>
+          <dt>Diagonal reveal</dt>
+          <dd>
+            A shutter-style diagonal wipe between screens, driven by USS
+            transitions and timed hand-offs between each stage.
+          </dd>
+        </div>
+        <div>
+          <dt>Render-texture preview and share card</dt>
+          <dd>
+            Renders a 3D model into a texture that can be shown inside UI
+            Toolkit, used for reward previews. The daily mission share card
+            uses the same render-texture approach to capture a piece of UI
+            as an image.
+          </dd>
+        </div>
+        <div>
+          <dt>Language-specific fonts</dt>
+          <dd>
+            Font assets for Arabic, Urdu (Nastaliq), Bengali and Devanagari,
+            so the UI could display those scripts correctly.
+          </dd>
+        </div>
+      </dl>
+
+      <h2 id="economy">The economy behind the screens</h2>
       <ul>
         <li>
-          The <strong>player-facing meta-game screens</strong> — shop,
-          progression, rewards, combo unlocks — in Unity UI Toolkit
-          (UXML/USS), on top of a library of reusable custom controls I built
-          so new screens compose from tested parts instead of starting from
-          zero.
+          I owned the <strong>PlayFab Economy V2 integration</strong>. I
+          modelled the combo and weapon catalog with links in both directions,
+          so the game can answer &ldquo;what does this combo need?&rdquo; and
+          &ldquo;what do these weapons unlock?&rdquo; from either side.
         </li>
         <li>
-          The <strong>economy integration on PlayFab Economy V2</strong>: I
-          modeled the combo and weapon catalog with bidirectional links, so
-          the game can answer both &ldquo;what does this combo need?&rdquo;
-          and &ldquo;what do these weapons unlock?&rdquo; from either
-          direction.
+          I wrote <strong>bulk catalog-import tooling</strong> that published
+          items programmatically, which is how weekly content drops and event
+          items went live instead of being clicked through a dashboard.
         </li>
         <li>
-          <strong>Bulk catalog-import tooling</strong> that publishes items
-          programmatically, turning catalog updates from a click-through chore
-          in a dashboard into a reviewed, repeatable operation.
-        </li>
-        <li>
-          <strong>Dynamic shop and combo screens</strong> that render locked
-          vs. unlocked content from live catalog and inventory state, so the
-          UI can&rsquo;t drift out of sync with what the backend economy says.
+          The <strong>shop and combo screens render locked and unlocked
+          content</strong> straight from the live catalog and the
+          player&rsquo;s inventory, so the UI can&rsquo;t drift out of sync
+          with the backend.
         </li>
       </ul>
 
       <EconomyDiagram />
 
-      <h2>What made it interesting</h2>
+      <h2>What I took from it</h2>
       <p>
-        The client renders <em>state</em>, not assumptions. Every locked
-        padlock and every price tag on screen traces back to the live catalog
-        and the player&rsquo;s inventory. That single rule is what lets
-        designers reshape the economy without anyone touching UI code.
+        The client renders state, not assumptions. Every padlock and price
+        tag on screen traces back to the live catalog and the player&rsquo;s
+        inventory, which is what let designers reshape the economy without
+        anyone touching UI code.
       </p>
     </ProjectLayout>
   );

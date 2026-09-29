@@ -25,7 +25,7 @@ export default function ProjectLayout({
   usePageMeta(`${title} — Anmol Bajpai`, dek);
 
   return (
-    <>
+    <article className="project-page">
       <header className="project-header">
         <Link className="backlink" to="/">
           &larr; Work
@@ -47,6 +47,6 @@ export default function ProjectLayout({
       </dl>
 
       <div className="prose">{children}</div>
-    </>
+    </article>
   );
 }
