@@ -1,4 +1,4 @@
-# anmolbajpai24.github.io
+# anmolbajpai.com
 
 Personal site. Editorial, typography-led, hand-built with Vite + React +
 TypeScript. Warm-paper light theme with a dark mode. No template.
