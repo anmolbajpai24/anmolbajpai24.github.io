@@ -15,8 +15,8 @@ It goes after the bottleneck I wrote about yesterday. Robot demonstrations
 are expensive because a human has to drive the robot. The cheap alternative
 is recording your own bare hands with no robot present, but that produces
 data the robot's body often can't execute, because a human and a robot are
-built differently. That's day 6's embodiment gap again, showing up at
-data-collection time.
+built differently. That's day 6's embodiment gap again, this time while the
+data is being collected.
 
 ## The ghost robot
 
@@ -33,8 +33,7 @@ architecture I trained on day 3, learned a cluttered-scene task from
 
 It doesn't remove the human. You still need a person, a headset and
 calibration. But you can hand the collection job to twenty strangers and get
-a working dataset back, which makes the bottleneck wider and doesn't just
-move it somewhere else.
+a working dataset back. That widens the bottleneck.
 
 Everything's open source: paper, code, models and data at
 [tml.stanford.edu/ARCap](https://tml.stanford.edu/ARCap).

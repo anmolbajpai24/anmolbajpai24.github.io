@@ -27,18 +27,18 @@ mixed: final reward per episode runs from -0.05 to 1.35, with a mean of
 The rest of the evening went on the concepts the loop needs before the code
 makes sense.
 
-Batching: the network looks at a few hundred examples at once (256 in my
-loop) and takes one step on their average error, so one odd example can't
-drag the weights around.
+Batching first. The network doesn't learn from one example at a time. It
+looks at a few hundred at once (256 in my loop) and takes one step on their
+average error, so one odd example can't drag the weights around.
 
-Normalization: the raw state numbers sit in different ranges. The hand's x
-runs from about 1.2 to 1.8 and its y from about -0.06 to 0.5. I rescale each
-one to mean 0 and standard deviation 1 so an input doesn't count for more
-just because its numbers are bigger.
+Then why networks want normalized numbers. The raw state values sit in
+different ranges. The hand's x runs from about 1.2 to 1.8 and its y from
+about -0.06 to 0.5. I rescale each one to mean 0 and standard deviation 1,
+so an input doesn't count for more because its numbers happen to be bigger.
 
-The optimizer: the gradient says, for every weight, which direction makes
-the error smaller. The optimizer (Adam here) decides how big a step to take
-in that direction.
+Last, what the optimizer does with a gradient. The gradient says, for every
+weight, which direction makes the error smaller. The optimizer (Adam here)
+decides how big a step to take that way.
 
 The loop isn't finished. Tomorrow I complete it, train the network, and set
 up a benchmark for this environment.

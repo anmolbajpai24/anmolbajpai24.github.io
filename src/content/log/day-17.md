@@ -23,6 +23,6 @@ better data efficiency than behavior cloning when demos are scarce.
 Behavior cloning is what I did on days 15 and 16. I used 800 demos for one
 task, and my network still had to be told where the cube was. The replay
 half reminded me of day 12, where my own replay missed the cube by about
-2cm. They align the gripper to the object first and replay after that.
+2cm.
 
 I only read the paper. I didn't run any of it.

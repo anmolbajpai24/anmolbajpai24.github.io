@@ -124,7 +124,6 @@ export default function RoboticsChallenge() {
         className="project-hero-media breakout"
         name="robotics/hand-replay.mp4"
         poster="robotics/hand-replay-poster.webp"
-        controls
         alt="Side by side: on the left, my hands passing a matchbox over a dark cloth. On the right, two simulated robot arms seen from above, moving their grippers along the same paths near a small red cube."
         ratio="32 / 9"
         caption="My hands on the left, the sim replaying them on the right. The grippers follow the motion and never touch the red cube."
