@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "22-day robot-learning challenge",
     meta: "Public log · 2026",
     blurb:
-      "Imitation learning in public. My diffusion policy scores 39.8% on PushT against the pretrained 61.0%, and a phone video of my hand drives a simulated robot arm. Every number is on a live dashboard.",
+      "My diffusion policy scores 39.8% on PushT against the pretrained 61.0%, and a lift policy drops from 99.0% to 4.2% when the cube's position is taken out of its input. All in simulation, with every number on a live dashboard.",
     tracks: ["ai"],
     tags: ["PyTorch", "LeRobot", "MediaPipe", "FastAPI"],
     href: "/work/robotics-challenge",
