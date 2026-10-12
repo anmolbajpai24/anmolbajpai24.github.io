@@ -50,7 +50,7 @@ export default function RoboticsChallenge() {
         className="project-hero-media"
         name="robotics/skill-curve.webp"
         alt="Line chart of PushT success rate against training step for my diffusion policy: 10% at 10,000 steps, 35% at 30,000, 43% at 50,000 and at 70,000, 40% at 90,000. A dashed line marks the pretrained baseline at 61%."
-        ratio="1200 / 750"
+        ratio="1200 / 738"
         caption="Success rate at five checkpoints of the overnight run. The first four points come from 150 episodes each, the last from the full 500."
       />
       <p>
