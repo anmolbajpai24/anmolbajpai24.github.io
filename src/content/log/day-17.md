@@ -7,9 +7,9 @@ summary: Read a paper from a lab at Imperial that taught one robot arm 1,000 tas
 ---
 
 A lab at Imperial says they taught one robot arm 1,000 tasks in a day, with
-one demo per task. I spent today reading their paper to find out how.
-
-<!-- TODO(anmol): paper title and link. The link in the day 17 post wasn't captured in X_POSTS.md. -->
+one demo per task. I spent today reading their paper to find out how. It's
+[Learning a Thousand Tasks in a Day](https://arxiv.org/abs/2511.10110), by
+Dreczkowski et al.
 
 The trick is that they mostly stopped training networks. Every task splits
 in two: align the gripper to the object, then replay what the human's demo

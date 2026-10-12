@@ -10,8 +10,6 @@ summary: Read about π0.7, Physical Intelligence's latest robot model, operating
 apparently it operated a kitchen appliance it was never trained on. I spent
 today reading up on how.
 
-<!-- TODO(anmol): link to the π0.7 write-up you read. No link is in the repo. -->
-
 It can operate an air fryer. You give π0.7 the task, then correct it mid-run
 in plain language, or show it a picture of the subgoal, and it adjusts. Its
 training data for the task traced back to **two episodes** of someone
