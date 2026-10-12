@@ -10,8 +10,9 @@ I'm building a dashboard so the findings of this challenge can be viewed in
 one place. It will have a leaderboard for the eval numbers and a player for
 the rollout videos.
 
-Tonight the leaderboard got done. It's a React front end on top of the eval
-API from days 8 to 10. PushT and xarm are in their own tables, because they
+Tonight the leaderboard got done. I built it with Claude Code. It's a React
+front end on top of the eval API from days 8 to 10. PushT and xarm are in
+their own tables, because they
 are scored on different protocols and a row from one shouldn't sit next to a
 row from the other.
 

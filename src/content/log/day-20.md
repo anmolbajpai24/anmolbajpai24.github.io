@@ -10,7 +10,8 @@ Today's job was the episode player, so the rollout videos sit next to the
 numbers they produced. One clip per storyline, from the first pretrained run
 to the sighted network.
 
-It's done. There are **six clips**:
+It's done. I built it with Claude Code, like the leaderboard. There are
+**six clips**:
 
 - pretrained diffusion on PushT (61.0%)
 - my 90k-step diffusion policy on PushT (39.8%)

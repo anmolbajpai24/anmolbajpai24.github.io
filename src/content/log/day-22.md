@@ -24,7 +24,8 @@ On the page: the PushT table (61.0, 39.8, 0.8), the xarm lift table (99.0,
 player with its six clips. Yesterday's push result isn't on the page yet.
 (Its row and its clip were added after the challenge ended.)
 
-The public URL was checked against a local run. `/summary` returned the same
+I did the deploy with Claude Code and checked the public URL against a local
+run. `/summary` returned the same
 three frozen rows, and a video file came back at 69,978 bytes, the same size
 as the local copy.
 
