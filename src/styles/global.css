@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
    Design tokens
    Warm-paper editorial palette. Light is the default; dark is a warm charcoal,
-   not a blue-black. All colors go through these variables — no hardcoded hex
+   not a blue-black. All colors go through these variables, no hardcoded hex
    in components.
 --------------------------------------------------------------------------- */
 
@@ -125,7 +125,7 @@ code {
   overflow-wrap: anywhere;
 }
 
-/* Programmatic focus target for route changes — no visible ring needed. */
+/* Programmatic focus target for route changes, no visible ring needed. */
 main:focus {
   outline: none;
 }
@@ -457,7 +457,7 @@ main:focus {
 }
 
 /* Experience: title and dates share a baseline, dates right-aligned.
-   Stacks (dates under the title) on phones — see the 720px query below. */
+   Stacks (dates under the title) on phones, see the 720px query below. */
 .xp-item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
