@@ -156,9 +156,8 @@ export default function RoboticsChallenge() {
         caption="The leaderboard, one table per task, each with its protocol written on it."
       />
       <p>
-        I built the <a href={DASHBOARD}>dashboard</a> with Claude Code. It
-        is a small FastAPI app that reads the result files the evals wrote:
-        LeRobot&rsquo;s JSON for
+        The <a href={DASHBOARD}>dashboard</a> is a small FastAPI app that
+        reads the result files the evals wrote: LeRobot&rsquo;s JSON for
         PushT and the plain-text logs from my own loop for the xarm. It
         never re-runs anything or writes to them. It has the leaderboard,
         per-episode metrics and rollout videos, with a React front end
