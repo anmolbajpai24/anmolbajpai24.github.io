@@ -73,7 +73,7 @@ export default function Layout() {
       </main>
 
       <footer className="site-footer">
-        <span>Anmol Bajpai · Delhi NCR, India</span>
+        <span>Anmol Bajpai</span>
         <SocialLinks className="footer-links" />      </footer>
     </div>
   );

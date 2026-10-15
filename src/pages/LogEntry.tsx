@@ -18,8 +18,8 @@ export default function LogEntry() {
 
   usePageMeta(
     entry
-      ? `Day ${entry.day}: ${entry.title} — Anmol Bajpai`
-      : "Not found — Anmol Bajpai",
+      ? `Day ${entry.day}: ${entry.title} · Anmol Bajpai`
+      : "Not found · Anmol Bajpai",
     entry?.summary,
   );
 

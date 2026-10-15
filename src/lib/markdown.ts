@@ -11,7 +11,7 @@ export interface LogEntryData {
 
 /**
  * Parses the `--- key: value ---` frontmatter block at the top of a log file.
- * Values are plain strings; no YAML nesting — keep entries simple on purpose,
+ * Values are plain strings; no YAML nesting. Keep entries simple on purpose,
  * so adding a day is just writing prose.
  */
 function parseFrontmatter(raw: string): {

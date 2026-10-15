@@ -10,20 +10,20 @@ export interface Track {
 export const tracks: Track[] = [
   {
     id: "games",
-    label: "Games & UI",
+    label: "Game UI",
     intro:
-      "Three years of game UI in Unity UI Toolkit, most of it on a live multiplayer mobile game.",
+      "Three years of UI and content tooling on a live multiplayer mobile game, plus my first Unity job.",
   },
   {
     id: "ai",
-    label: "AI & Robotics",
+    label: "AI & robotics",
     intro:
-      "Robot-learning policies trained and evaluated in simulation, logged in public with the numbers.",
+      "Robot-learning policies trained and scored in public, and the Gemini features in Roundtrip.",
   },
   {
     id: "web",
-    label: "Web products",
-    intro: "React products that real people used, from a quiz app to a trip planner.",
+    label: "Web apps",
+    intro: "A quiz product frontend I built at Petals, and a trip planner I built for my own travels.",
   },
 ];
 
@@ -49,29 +49,18 @@ export const projects: Project[] = [
     title: "Melee Madness",
     meta: "Petals Studio · 2023 to 2026",
     blurb:
-      "Every UI screen in a live multiplayer mobile brawler, from the shop and player profile to match results and the leaderboard, built on a reusable control library in UI Toolkit.",
+      "The UI for a live multiplayer mobile game on the Play Store. I built every screen and the control library behind them, plus the PlayFab catalog tooling that weekly content drops went through.",
     tracks: ["games"],
     tags: ["Unity UI Toolkit", "UXML/USS", "C#", "PlayFab"],
     href: "/work/melee-madness",
     cover: "cards/melee-madness.webp",
   },
   {
-    slug: "tag-prototype",
-    title: "Hyper-casual Tag prototype",
-    meta: "Caravel.Tech internship · 2022",
-    blurb:
-      "Sole programmer on a working Unity prototype over four months, about 2,000 lines of C#. Cut the build size by 25% through asset and code optimisation.",
-    tracks: ["games"],
-    tags: ["Unity", "C#", "Optimisation"],
-    href: "/work/tag-prototype",
-    cover: "cards/tag-prototype.webp",
-  },
-  {
     slug: "robotics-challenge",
     title: "22-day robot-learning challenge",
     meta: "Public log · 2026",
     blurb:
-      "Imitation learning in public. My diffusion policy scores 39.8% on PushT against the pretrained 61.0%, and a phone video of my hand drives a simulated robot arm. Every number is on a live dashboard.",
+      "Robot learning from zero, in public. My diffusion policy scores 39.8% on PushT against the pretrained 61.0%, and a phone video of my hand drives a simulated robot arm. Every number is on a live dashboard.",
     tracks: ["ai"],
     tags: ["PyTorch", "LeRobot", "MediaPipe", "FastAPI"],
     href: "/work/robotics-challenge",
@@ -80,10 +69,10 @@ export const projects: Project[] = [
   {
     slug: "roundtrip",
     title: "Roundtrip",
-    meta: "Personal · 2026",
+    meta: "Side project · 2026",
     blurb:
-      "A trip planner for groups: one shared plan, a six-letter code to join, and it works offline. I built it for a 24-day trip and we used it every day.",
-    tracks: ["web"],
+      "A trip planner I built for a 24-day group trip. Everyone edits one shared plan, even offline, and Gemini drafts the first itinerary.",
+    tracks: ["web", "ai"],
     tags: ["React", "Supabase", "Gemini", "PWA"],
     href: "/work/roundtrip",
     cover: "cards/roundtrip.webp",
@@ -98,5 +87,16 @@ export const projects: Project[] = [
     tags: ["React", "REST APIs"],
     href: "/work/qzone",
     cover: "cards/qzone.webp",
+  },
+  {
+    slug: "tag-prototype",
+    title: "Hyper-casual Tag prototype",
+    meta: "Caravel.Tech internship · 2022",
+    blurb:
+      "Sole programmer on a working Unity prototype over four months, about 2,000 lines of C#. Cut the build size by 25% through asset and code optimisation.",
+    tracks: ["games"],
+    tags: ["Unity", "C#", "Optimisation"],
+    href: "/work/tag-prototype",
+    cover: "cards/tag-prototype.webp",
   },
 ];

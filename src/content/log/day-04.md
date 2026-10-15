@@ -3,20 +3,20 @@ day: 4
 slug: day-4
 title: 39.8%, and a plateau the loss curve hid
 date: 2026-07-19
-summary: My own policy scored 39.8% under the frozen protocol. The interesting part — skill stopped improving at 50k steps while the loss kept falling for the rest of the run.
+summary: My own policy scored 39.8% under the frozen protocol. Skill stopped improving at 50k steps while the loss kept falling for the rest of the run.
 ---
 
 Eval day. My from-scratch policy, measured by the same frozen protocol as the
-pretrained reference: **39.8%** (199/500). The reference scores 61.0%.
+pretrained reference, scored **39.8%** (199/500). The reference scores 61.0%.
 
-So 45% of the reference training bought about 65% of the reference skill.
-I'll take it. But the headline number turned out to be the least interesting
-thing I learned today.
+So 45% of the reference training got about 65% of the reference skill. I'll
+take it. The checkpoint sweep was more interesting than the final number,
+though.
 
 ## The plateau
 
-I swept the intermediate checkpoints (150 episodes each, quick-and-dirty but
-consistent):
+I evaluated the intermediate checkpoints too (150 episodes each, a rougher
+count but the same settings every time):
 
 | Checkpoint | Success rate |
 |---|---|
@@ -26,39 +26,37 @@ consistent):
 | 70k steps | 43.3% |
 | 90k (final, frozen protocol) | 39.8% |
 
-Skill plateaued by 50,000 steps. Meanwhile the loss kept falling through the
-entire back half of the run, 0.005 down to 0.002, looking for all the world
-like the model was still improving.
+Skill plateaued by 50,000 steps. The loss kept falling through the whole
+back half of the run, from 0.005 down to 0.002. Going by the loss alone, I
+would have said the model was still improving.
 
-It wasn't lying, exactly. Loss and success rate grade different exams. Loss
-measures per-frame imitation on states a *human* visited; success rate
-measures 300-step rollouts through states the *policy itself* reaches,
-compounding error included. The back half of those ten GPU-hours polished an
-answer to the wrong question.
+Loss and success rate measure different things. Loss measures per-frame
+imitation on states a human visited. Success rate measures 300-step rollouts
+through states the policy itself reaches, with its errors compounding. The
+last four hours of training improved the first and did nothing for the
+second.
 
-(To be precise: it's a plateau, not a decline. The 43.3% → 39.8% drop is
-within sampling error at these episode counts — I'm not going to claim a
-degradation I can't statistically back.)
+(To be precise: this is a plateau, not a decline. The drop from 43.3% to
+39.8% is within sampling error at these episode counts, so I'm not claiming
+the policy got worse.)
 
 ## How mine fails vs. how the reference fails
 
-The failure modes differ more than the success rates suggest:
+The failures differ more than the success rates suggest:
 
-- My policy **whiffs completely** — never even touches the block — in 16 of
-  500 episodes. The pretrained reference does that once in 500.
-- Average max-reward per episode: **0.845** (mine) vs **0.945** (reference).
-  The reference's failures are photo-finishes; a meaningful share of mine are
-  total misses.
+- My policy misses completely, never touching the block, in 16 of 500
+  episodes. The pretrained reference does that once in 500.
+- Average max reward per episode is 0.845 for mine and 0.945 for the
+  reference. The reference's failures are mostly near misses. A good share
+  of mine are total misses.
 
-## An open question I'm banking, not answering
+## An open question I haven't answered
 
-Four of my episodes reached max-reward ≈ 1.0 — the block essentially on
-target — and still counted as failures. Either the policy nudges the block
-off after arriving, or success requires *holding* position in a way I don't
-yet understand. I'm writing that down instead of hand-waving an explanation;
-it goes on the list for a later day.
+Four of my episodes reached a max reward of about 1.0, with the block
+essentially on target, and still counted as failures. Either the policy
+nudges the block off after arriving, or success means holding position in a
+way I don't understand yet. I don't know which, so I'm writing it down for a
+later day instead of guessing.
 
-**Worth remembering:** the metric you optimize is a proxy, and it will
-happily keep improving after the thing you care about has stopped. The only
-way I caught this was having a frozen, comparable eval: the ruler from day 1
-doing the job it was frozen for.
+I only caught the plateau because the eval was frozen and comparable across
+checkpoints. The loss would never have shown it.

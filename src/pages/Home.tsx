@@ -54,7 +54,7 @@ function ProjectCard({ p }: { p: Project }) {
 }
 
 export default function Home() {
-  usePageMeta("Anmol Bajpai · software engineer");
+  usePageMeta("Anmol Bajpai · product engineer");
   const latest = logEntries[0];
   const [params, setParams] = useSearchParams();
   const raw = params.get("track");
@@ -98,14 +98,16 @@ export default function Home() {
           decoding="async"
         />
         <div className="hero-copy">
-          <p className="kicker">Software engineer · Delhi NCR, open to relocating</p>
+          <p className="kicker">Product engineer</p>
           <h1>Hi, I&rsquo;m Anmol.</h1>
           <p className="hero-intro">
-            I spent three years at Petals Studio building the UI and meta-game
-            systems for Melee Madness, a live multiplayer mobile game, in Unity
-            UI Toolkit. Alongside that I build web products people use, and this
-            year I taught myself robot learning in public. This site has all of
-            it, sorted so you can go straight to the part you care about.
+            I like taking a feature from a rough first version to something
+            people rely on, and then fixing what they run into. For three years
+            at Petals Studio that was Melee Madness, a live multiplayer mobile
+            game on the Play Store. I built its UI and the tools around it, like
+            a pipeline that let designers publish new levels without waiting on
+            an engineer. Outside work I build small web apps, and I spent 22
+            days teaching myself robot learning in public.
           </p>
           <div className="hero-actions">
             <a className="button button--primary" href="#work">
@@ -169,6 +171,24 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" id="how-i-work">
+        <h2 className="section-label">How I work</h2>
+        <div className="measure">
+          <p>
+            Melee Madness got new weapons and combos every week, so the UI
+            couldn&rsquo;t be hardcoded. I built the unlock screens to read from
+            the live PlayFab catalog and each player&rsquo;s inventory, and wrote
+            a bulk import tool to get each content drop into the catalog.
+          </p>
+          <p>
+            I also like building tools that take me out of the loop. Designers
+            published new levels by editing a Google Sheet, and a pipeline I
+            wrote validated the sheet and turned it into game config. A new
+            level didn&rsquo;t need an engineer to ship.
+          </p>
+        </div>
+      </section>
+
       {latest && (
         <section className="section">
           <h2 className="section-label">From the log</h2>
@@ -191,12 +211,22 @@ export default function Home() {
         <h2 className="section-label">Experience</h2>
         <ol className="timeline">
           <li className="xp-item">
-            <span className="xp-role">Software Development Engineer I, Petals Studio</span>
-            <span className="xp-dates">May 2023 to Jul 2026</span>
+            <span className="xp-role">SDE I, Petals Studio</span>
+            <span className="xp-dates">Jul 2024 to Jul 2026</span>
             <p>
-              All the UI for Melee Madness in Unity UI Toolkit, the PlayFab
-              Economy V2 integration and its catalog tooling, and the React
-              frontend for Qzone. The studio shut down in July 2026.
+              Built all the UI for Melee Madness in Unity UI Toolkit and the
+              PlayFab Economy V2 integration behind its shop and unlocks. Wrote
+              the Google Sheets to game config pipeline that let designers
+              publish levels on their own. Also built the React frontend for
+              Qzone.
+            </p>
+          </li>
+          <li className="xp-item">
+            <span className="xp-role">SDE Intern, Petals Studio</span>
+            <span className="xp-dates">May 2023 to Jul 2024</span>
+            <p>
+              Game screens and UI flows for Melee Madness in UI Toolkit and C#.
+              Promoted to SDE I in July 2024.
             </p>
           </li>
           <li className="xp-item">
@@ -220,19 +250,19 @@ export default function Home() {
         <dl className="skills">
           <div>
             <dt>Games & UI</dt>
-            <dd>Unity, Unreal Engine, UI Toolkit (UXML/USS), C#, PlayFab Economy V2</dd>
+            <dd>Unity, UI Toolkit (UXML/USS), C#, PlayFab Economy V2, Unreal Engine</dd>
           </div>
           <div>
-            <dt>Web</dt>
-            <dd>React, TypeScript, JavaScript, HTML/CSS, Supabase, Firebase, FastAPI</dd>
+            <dt>Product & web</dt>
+            <dd>React, TypeScript, JavaScript, Supabase, Firebase, FastAPI, REST APIs</dd>
           </div>
           <div>
-            <dt>AI & Robotics</dt>
-            <dd>Python, PyTorch, LeRobot, MediaPipe, LLM APIs</dd>
+            <dt>AI</dt>
+            <dd>LLM APIs (Gemini), PyTorch, LeRobot, MediaPipe, Python</dd>
           </div>
           <div>
             <dt>Tools</dt>
-            <dd>Google Apps Script, REST APIs, Git, Figma, Postman</dd>
+            <dd>Git, GitHub Actions, Google Apps Script, Figma, Postman</dd>
           </div>
         </dl>
       </section>
@@ -241,8 +271,9 @@ export default function Home() {
         <h2 className="section-label">Contact</h2>
         <div className="measure">
           <p>
-            I&rsquo;m looking for my next role, in games or in AI, and I&rsquo;m
-            happy to relocate. Email is the quickest way to reach me.
+            I&rsquo;m looking for a product engineering role, ideally at an AI
+            startup, and I can start right away. Email is the quickest way to
+            reach me.
           </p>
           <SocialLinks className="contact-links" showAddress />
         </div>

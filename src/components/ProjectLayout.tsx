@@ -22,7 +22,7 @@ export default function ProjectLayout({
   facts,
   children,
 }: Props) {
-  usePageMeta(`${title} — Anmol Bajpai`, dek);
+  usePageMeta(`${title} · Anmol Bajpai`, dek);
 
   return (
     <article className="project-page">

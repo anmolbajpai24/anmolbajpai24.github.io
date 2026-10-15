@@ -18,7 +18,7 @@ const screens = [
 export default function Roundtrip() {
   return (
     <ProjectLayout
-      kicker="Personal project · 2026"
+      kicker="Side project · 2026"
       title="Roundtrip"
       dek="A trip planner for groups. One person creates a trip and shares a six-letter code, and everyone on it sees the same plan. I built it for a 24-day trip and we used it every day we were away."
       facts={[
